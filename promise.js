@@ -22,22 +22,38 @@ Function can be anonymous or a declaration function
 
 // console.log(promiseWithExecutorFunction)
 
-console.log('Before PromsieWithThen declaration')
+// console.log('Before PromsieWithThen declaration')
 
-const promiseWithThen = new Promise((resolve,reject)=>{
+// const promiseWithThen = new Promise((resolve,reject)=>{
     
-    console.log("hello world")
+//     console.log("hello world")
 
-    setTimeout(()=>{
-        console.log('Called After 2 seconds')
-        resolve("I am resolved")
+//     setTimeout(()=>{
+//         console.log('Called After 2 seconds')
+//         resolve("I am resolved")
+//     }
+//     ,2);
+// })
+
+// console.log("After PromiseWithThen")
+
+// promiseWithThen.then((anyhting)=>{
+//     console.log(anyhting);
+// });
+
+
+const promise = new Promise(function (resolve, reject) {
+    let randNum = Math.random();
+    console.log(randNum);
+    if (randNum >= 0.5) {
+      resolve("Promise Resolved");
+    } else {
+      reject("Promise Rejected");
     }
-    ,2);
+  });
+
+promise.then((value)=>{
+    console.log(value)
+}).catch((error)=>{
+    console.error(error)
 })
-
-console.log("After PromiseWithThen")
-
-promiseWithThen.then((anyhting)=>{
-    console.log(anyhting);
-});
-
