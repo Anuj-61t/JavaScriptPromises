@@ -14,10 +14,30 @@ The function passed in Promise() constructor is called executor function
 Function can be anonymous or a declaration function
  */
 
-const emptyPromise = new Promise();
-console.log(emptyPromise)
+// const emptyPromise = new Promise();
+// console.log(emptyPromise)
 
-const promiseWithExecutorFunction = new Promise((resolve,reject)=>{
+// const promiseWithExecutorFunction = new Promise((resolve,reject)=>{
+// });
+
+// console.log(promiseWithExecutorFunction)
+
+console.log('Before PromsieWithThen declaration')
+
+const promiseWithThen = new Promise((resolve,reject)=>{
+    
+    console.log("hello world")
+
+    setTimeout(()=>{
+        console.log('Called After 2 seconds')
+        resolve("I am resolved")
+    }
+    ,2);
+})
+
+console.log("After PromiseWithThen")
+
+promiseWithThen.then((anyhting)=>{
+    console.log(anyhting);
 });
 
-console.log(promiseWithExecutorFunction)
