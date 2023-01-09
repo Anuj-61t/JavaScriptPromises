@@ -42,18 +42,58 @@ Function can be anonymous or a declaration function
 // });
 
 
-const promise = new Promise(function (resolve, reject) {
-    let randNum = Math.random();
-    console.log(randNum);
-    if (randNum >= 0.5) {
-      resolve("Promise Resolved");
-    } else {
-      reject("Promise Rejected");
-    }
-  });
+// const promise = new Promise(function (resolve, reject) {
+//     let randNum = Math.random();
+//     console.log(randNum);
+//     if (randNum >= 0.5) {
+//       resolve("Promise Resolved");
+//     } else {
+//       reject("Promise Rejected");
+//     }
+//   });
 
-promise.then((value)=>{
-    console.log(value)
-}).catch((error)=>{
-    console.error(error)
+// promise.then((value)=>{
+//     console.log(value)
+// }).catch((error)=>{
+//     console.error(error)
+// })
+
+
+// To handle multiple promises or array of promises we have 
+// 4 Promise methods Promise.all, Promise.allSettelled, Promise.race and Promise.any
+
+// 1)Promise.all - Returns a Promise which resolved if all looped(iteratable) Promises are resolved(fullfilled) or reject if any of the promise rejects
+
+// Example:
+
+const promise1 = Promise.resolve(2);
+const promise2 = new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        resolve(2)
+    },2);
+})
+// const promise3 = new Promise((resolve,reject)=>{
+//     setTimeout(()=>{
+//         resolve(3)
+//     },3)
+// })
+const promise3 = new Promise((resolve,reject)=>{
+    setTimeout(()=>{
+        reject(
+        'This promise is Rejected'
+        )
+    },3)
+})
+// const promiseAllResult = Promise.all([promise1, promise2,promise3]);
+
+// promiseAllResult.then((value)=>{
+//     console.log(value)
+// }).catch(error=>{
+//     console.error(error)
+// })
+
+const promiseAllSetteled = Promise.allSettled([promise1,promise2,promise3])
+
+promiseAllSetteled.then((value,error)=>{
+        console.log(value)
 })
